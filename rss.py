@@ -72,7 +72,7 @@ def updateFile(showFile):
 
 def downloadAll():
     cursor.execute(
-        "select files._rowid_ as rowid, link, originalName, season, episode, quality from files natural join show where downloaded is null")
+        "select files._rowid_ as rowid, link, originalName, season, episode, quality from files natural join show where downloaded is null and episode != 99")
     files = cursor.fetchall()
     for f in files:
         filename = '{originalName}_S{season}E{episode}_[{quality}].torrent'.format(
