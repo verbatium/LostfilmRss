@@ -90,7 +90,7 @@ def downloadAll():
 
 def main():
     txt = httpGet("http://retre.org/rssdd.xml")
-    xmldoc = minidom.parseString(txt)
+    xmldoc = minidom.parseString(txt.replace(' & ',' &amp;'))
     itemlist = xmldoc.getElementsByTagName('item')
     for s in itemlist:
         sf = ShowFile(s)
