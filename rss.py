@@ -20,6 +20,7 @@ def httpGet(target_url):
 
 
 def saveTorrent(url, filename):
+    logging.info("Downloading '%s' from '%s'", filename, url)
     data = httpGet(url)
     if (data):
         f = open(filename, "wb")
@@ -90,7 +91,7 @@ def downloadAll():
 
 def main():
     txt = httpGet("http://retre.org/rssdd.xml")
-    xmldoc = minidom.parseString(txt.replace(' & ',' &amp;'))
+    xmldoc = minidom.parseString(txt.decode().replace(' & ',' &amp;'))
     itemlist = xmldoc.getElementsByTagName('item')
     for s in itemlist:
         sf = ShowFile(s)
